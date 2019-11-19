@@ -54,7 +54,7 @@ dts devel watchtower stop -H autobot27.local
 # build
 dts devel build -f --arch arm32v7 -H autobot27.local
 # run
-docker -H autobot27.local run -it --rm --net=host duckietown/dt-core-cityrescue:v1-arm32v7
+docker -H autobot27.local run -it --rm --net=host -v /data:/data --privileged duckietown/dt-core-cityrescue:v1-arm32v7
 # rqt_graph
 dts start_gui_tools autobot27
 rqt_graph
