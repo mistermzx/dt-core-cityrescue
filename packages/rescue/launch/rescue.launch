@@ -1,0 +1,10 @@
+<launch>
+    <arg name="veh" default="$(env VEHICLE_NAME)"/>
+    <!-- launch indefinite_navigation -->
+    <include file="$(find duckietown_demos)/launch/indefinite_navigation.launch"/>
+    <!-- additionally launch lane_recovery_node -->
+    <group ns="$(arg veh)">
+        <node pkg="rescue" type="lane_recovery_node.py" name="lane_recovery_node" output="screen"/>
+    </group>
+
+</launch>

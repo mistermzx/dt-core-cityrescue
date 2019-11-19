@@ -43,3 +43,19 @@ a different location later.
 
 Change the file `launch.sh` in your repository to
 launch your code.
+
+### Run
+# Portainer (stop dt-core container)
+autobot27.local:9000
+# add to executable
+chmod +x ./packages/rescue/src/lane_recovery_node.py
+# deactivate watchtower
+dts devel watchtower stop -H autobot27.local
+# build
+dts devel build -f --arch arm32v7 -H autobot27.local
+# run
+docker -H autobot27.local run -it --rm --net=host duckietown/dt-core-cityrescue:v1-arm32v7
+# rqt_graph
+dts start_gui_tools autobot27
+rqt_graph
+### Ressources: http://wiki.ros.org/rospy_tutorials/Tutorials/WritingImagePublisherSubscriber
