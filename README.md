@@ -68,3 +68,7 @@ dts duckiebot keyboard_control autobot27
 192.168.1.30
 
 [FATAL] [1574244908.199676]: unable to register subscription [/autobot27/logic_gate_node/rescue_off ] with master: ERROR: parameter [topic] contains illegal chars
+
+
+rosparam get /autobot27/rescue_trigger_node/trigger_rescue
+rosparam set /autobot27/rescue_trigger_node/trigger_rescue true 

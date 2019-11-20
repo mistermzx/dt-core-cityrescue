@@ -130,7 +130,7 @@ events: # Maps from subscribing topic to signal ids
     trigger: True
 
   recovery_off:
-    topic: "logic_gate_node/recovery_off "
+    topic: "logic_gate_node/recovery_off"
     msg_type: "BoolStamped"
     trigger: True
 
