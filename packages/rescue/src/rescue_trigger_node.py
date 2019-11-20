@@ -15,10 +15,10 @@ class rescue_trigger(object):
         # self.pub_trigger = rospy.Publisher("/autobot27/recovery_off", BoolStamped, queue_size=1)
 
 
-        self.rescue_on = BoolStamped
+        self.rescue_on = BoolStamped()
         self.rescue_on.Data = False
-        self.rescue_off = BoolStamped
-        self.rescue_off.Data = True
+        # self.rescue_off = BoolStamped
+        # self.rescue_off.Data = True
 
 
     def run(self):
@@ -29,7 +29,8 @@ class rescue_trigger(object):
             trigger = rospy.get_param("~trigger_rescue")
             if trigger != self.rescue_on.Data:
                 self.rescue_on.Data = trigger
-                self.rescue_off.Data = not trigger
+                print("rescue_on.Data %s"%self.rescue_on.Data)
+                # self.rescue_off.Data = not trigger
                 print("[rescue_trigger_node]: changed rescue_on to %s"%trigger)
                 self.pub_trigger.publish(self.rescue_on)
             rate.sleep()
