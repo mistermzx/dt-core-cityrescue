@@ -124,8 +124,13 @@ events: # Maps from subscribing topic to signal ids
 
 
   # @Martin
-  rescue_on:
-    topic: "logic_gate_node/rescue_on"
+  recovery_on:
+    topic: "logic_gate_node/recovery_on"
+    msg_type: "BoolStamped"
+    trigger: True
+
+  recovery_off:
+    topic: "logic_gate_node/recovery_off "
     msg_type: "BoolStamped"
     trigger: True
 
@@ -181,13 +186,30 @@ nodes:
   auto_calibration_node: "auto_calibration_node/switch"
   auto_calibration_calculation_node: "auto_calibration_calculation_node/switch"
 
+
 # Define state transitions
 
 global_transitions:
   joystick_override_on_and_parallel_autonomy_off: "NORMAL_JOYSTICK_CONTROL"
   joystick_override_on_and_parallel_autonomy_on: "SAFE_JOYSTICK_CONTROL"
+  #@Martin
+  recovery_on: "RECOVERY"
+
 
 states:
+  # @ Martin
+  RECOVERY:
+      transitions:
+          recovery_off: "LANE_FOLLOWING"
+      active_nodes:
+        - lane_filter_node
+        - line_detector_node
+        - stop_line_filter_node
+        - framerate_high
+        - decoder_node
+      lights: ["joystick"]
+      current_status: "implemented"
+
   NORMAL_JOYSTICK_CONTROL:
     transitions:
       joystick_override_off_and_deep_lane_off: "LANE_FOLLOWING"
@@ -390,6 +412,7 @@ states:
       calibration_calculation_stop: "CALIBRATING"
     active_nodes:
       - auto_calibration_calculation_node
+
 
   # LANE_RECOVERY: # not implemented
   #   transitions:

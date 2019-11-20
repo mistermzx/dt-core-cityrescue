@@ -58,4 +58,13 @@ docker -H autobot27.local run -it --rm --net=host -v /data:/data --privileged du
 # rqt_graph
 dts start_gui_tools autobot27
 rqt_graph
+
+# run indefinite navigation
+dts duckiebot keyboard_control autobot27
+
 ### Ressources: http://wiki.ros.org/rospy_tutorials/Tutorials/WritingImagePublisherSubscriber
+
+## IP adress
+192.168.1.30
+
+[FATAL] [1574244908.199676]: unable to register subscription [/autobot27/logic_gate_node/rescue_off ] with master: ERROR: parameter [topic] contains illegal chars

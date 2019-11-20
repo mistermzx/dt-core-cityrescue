@@ -82,14 +82,14 @@ events:
 # - parking_on flag?
 
   # @Martin
-  rescue_on:
+  recovery_on:
     default: False
-    topic: "rescue_on"
+    topic: "recovery_on"
     msg_type: "BoolStamped"
     trigger: True
-  rescue_off:
+  recovery_off:
     default: True
-    topic: "rescue_off"
+    topic: "recovery_off"
     msg_type: "BoolStamped"
     trigger: False
 
@@ -157,9 +157,16 @@ gates:
     output_topic: "~at_stop_line_and_charging_exit"
 
   #@Martin
-  rescue_on:
+  recovery_on:
     gate_type: "AND"
     inputs:
-      - rescue_on
-      - rescue_on
-    output_topic: "~rescue_on"
+      - recovery_on
+      - recovery_on
+    output_topic: "~recovery_on"
+
+  recovery_off:
+    gate_type: "AND"
+    inputs:
+      - recovery_off
+      - recovery_off
+    output_topic: "~recovery_off"
