@@ -1,4 +1,6 @@
-# Template: template-ros-core
+# City Rescue
+
+# Template usage: template-ros-core
 
 This template provides a boilerplate repository
 for developing ROS-based software in Duckietown.
