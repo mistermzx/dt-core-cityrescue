@@ -1,5 +1,15 @@
 # City Rescue
 
+To build:
+```
+dts devel build -f --arch arm32v7 -H <HOSTNAME>.local
+```
+
+To run:
+```
+dts duckiebot demo --duckiebot_name <HOSTNAME> --demo_name indefinite_navigation --package_name duckietown_demos --image duckietown/dt-core-cityrescue:v1-arm32v7
+```
+
 # Template usage: template-ros-core
 
 This template provides a boilerplate repository
