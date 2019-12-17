@@ -122,17 +122,6 @@ events: # Maps from subscribing topic to signal ids
     msg_type: "BoolStamped"
     trigger: True
 
-
-  # @Martin
-  # recovery_on:
-  #   topic: "logic_gate_node/recovery_on"
-  #   msg_type: "BoolStamped"
-  #   trigger: True
-
-  # recovery_off:
-  #   topic: "logic_gate_node/recovery_off"
-  #   msg_type: "BoolStamped"
-  #   trigger: True
   recovery_on:
     topic: "recovery_mode"
     msg_type: "BoolStamped"
@@ -201,20 +190,14 @@ nodes:
 global_transitions:
   joystick_override_on_and_parallel_autonomy_off: "NORMAL_JOYSTICK_CONTROL"
   joystick_override_on_and_parallel_autonomy_on: "SAFE_JOYSTICK_CONTROL"
-  #@Martin
   recovery_on: "LANE_RECOVERY"
 
 
 states:
-  # @ Martin
   LANE_RECOVERY:
       transitions:
           recovery_off: "LANE_FOLLOWING"
       active_nodes:
-        # - lane_filter_node
-        # - line_detector_node
-        # - stop_line_filter_node
-        # - framerate_high
         - lane_recovery_node
         - decoder_node
       # lights: ["joystick"]
@@ -422,21 +405,3 @@ states:
       calibration_calculation_stop: "CALIBRATING"
     active_nodes:
       - auto_calibration_calculation_node
-
-
-  # LANE_RECOVERY: # not implemented
-  #   transitions:
-  #     found_lane: "LANE_FOLLOWING"
-  #     lane_recovery_timeout_reached: "SAFE_JOYSTICK_CONTROL"
-  #   active_nodes:
-  #     - lane_filter_node
-  #     - line_detector_node
-  #   current_status: "planned"
-  # INTERSECTION_RECOVERY: # not implemented
-  #   transitions:
-  #     found_lane: "LANE_FOLLOWING"
-  #     intersection_recovery_timeout_reached: "SAFE_JOYSTICK_CONTROL"
-  #   active_nodes:
-  #     - lane_filter_node
-  #     - line_detector_node
-  #   current_status: "planned"
