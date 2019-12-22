@@ -1,6 +1,10 @@
 # City Rescue Enabled dt-core
 
-This repository builds a variant of `dt-core`. It adds the definition of the state transitions into and out of a ___RESCUE MODE___ to the FSM.
+## System explanation
+
+This repository builds a variant of `dt-core` image. It adds the definition of the state transitions into and out of ___LANE_RECOVERY___ state to the FSM. When the bot is triggered to go into LANE_RECOVERY state, it only executes the commands from topic `/<AUTOBOT_NAME>/lane_recovery_node/car_cmd`. This infrastructure is needed so that when a rescue operation is needed, the bot will only follow commands from that topic, which is used by the [Rescue center and rescue agents](https://github.com/jasonhu5/duckie-rescue-center/tree/v1).
+
+## Commands to build and run
 
 To build:
 ```
